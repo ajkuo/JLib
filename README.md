@@ -7,7 +7,7 @@
  ### Success:  
 {  
      "message": 自訂,  
-     "result": True|False (此欄位為回傳結果，可用於判斷式，例如：傳入兩值判斷是否大於、是否相等),  
+     "result": True|False (此欄位為回傳結果，可用於判斷式，例如：傳入兩值判斷是否大於、是否相等),  
      "error": False  
 }  
   
