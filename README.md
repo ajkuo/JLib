@@ -30,7 +30,8 @@ JSON 格式一律使用 **Utils.GetApiJson()** 統一格式如下說明：
 {  
      "message": 自訂,  
      "result": (True | False),  
-     "error": False  
+     "error": False,  
+     "createTime": "2018-01-18 14:58:48.082225 (UTC)"  
 }
   
   
@@ -39,7 +40,8 @@ JSON 格式一律使用 **Utils.GetApiJson()** 統一格式如下說明：
      "message": "{{必為文字}}",  
      "result": False,  
      "error": True,  
-     "debug": "{{錯誤原因}}"  
+     "debug": "{{錯誤原因}}",  
+     "createTime": "2018-01-18 14:58:48.082225 (UTC)"  
 }  
 
 ##### JSON 內容說明
