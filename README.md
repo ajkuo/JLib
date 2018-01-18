@@ -39,8 +39,8 @@ JSON 格式一律使用 **Utils.GetApiJson()** 統一格式如下說明：
      "message": "{{必為文字}}",  
      "result": False,  
      "error": True,  
-     "debug": "{{錯誤原因}}" 
-}
+     "debug": "{{錯誤原因}}"  
+}  
 
 ##### JSON 內容說明
 在使用 GetApiJson() 時，需傳入四項參數，分別為
