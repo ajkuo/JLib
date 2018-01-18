@@ -6,18 +6,16 @@
   
  ### Success:
  { 
-     "message": 自訂
-     "result": True|False (視內容不定, 此欄位可視為判斷值, 並不是程式是否有出錯) 
+     "message": 自訂, 
+     "result": True|False (視內容不定, 此欄位可視為判斷值, 並不是程式是否有出錯), 
      "error": False
 } 
  
 ### Failure: 
 { 
-     "message": 必為文字
-     "result": False
-     "error": True
+     "message": 必為文字,
+     "result": False,
+     "error": True,
      "debug": 錯誤原因 (只在 Config.py 內 DEBUG_MODE = True 時顯示) 
 } 
 
-
- 
