@@ -28,29 +28,29 @@ JSON 格式一律使用 **Utils.GetApiJson()** 統一格式如下說明：
  
 ##### 程式正常執行結果：
 {  
-     "message": 自訂,   
-     "result": (True | False),  
+     "message": 自訂,  
+     "result": (True | False),  
      "error": False  
 }
   
   
 ##### 程式發生例外狀況：
 {  
-     "message": "{{必為文字}}",   
-     "result": False,  
+     "message": "{{必為文字}}",  
+     "result": False,  
      "error": True,  
-     "debug": "{{錯誤原因}}" ( debug 只在 Config.py 內 DEBUG_MODE = True 時顯示)  
+     "debug": "{{錯誤原因}}" 
 }
 
 ##### JSON 內容說明
 在使用 GetApiJson() 時，需傳入四項參數，分別為
-1. **message**  
+1. message  
 此參數為主要回傳內容，在 **執行失敗(發生例外)** 的情況下，必為一段文字；其他情況無任何限制，可自由設定回傳內容，亦可回傳 List, Dict 等。
-2. **result**  
+2. result  
 此參數為自訂的程式判斷結果，可用來當作判斷式是否正確的回傳值(例如：帳號密碼驗證），預設為 True。
-3. **error**  
+3. error  
 此參數用以判斷程式是否發生錯誤，建議在接收回傳時，先判斷此參數，確認程式正常執行後再做其他判斷。
-4. **debug**  
+4. debug  
 此參數只在 Config.py 內的 DEBUG_MODE 設為 True 時，於程式發生例外錯誤時回傳，其他情況不回傳，請在每個函式內的 Except 將 Exception 以字串(str)形式傳入。
 
 撰寫前請參考既有程式碼及以上說明，以保持程式彈性和穩定。
