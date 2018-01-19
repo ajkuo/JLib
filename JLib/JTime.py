@@ -1,8 +1,8 @@
 # coding: utf-8
 import time
 from datetime import datetime, timedelta, timezone
-from JLib import Config as config, Utils
-from JLib import Math
+from JLib import JConfig as config, JMath
+from JLib.JConfig import Rsp
 
 def GetNowDatetime(offset=config.SYSTEM_DEFAULT_TIMEZONE):
     """
@@ -25,7 +25,7 @@ def GetNowDatetime(offset=config.SYSTEM_DEFAULT_TIMEZONE):
         result = False
         errorMessage = str(ex)
 
-    jsonResult = Utils.GetApiJson(message, result=result, error=error, debug=errorMessage)
+    jsonResult = Rsp.Dumps(message, result=result, error=error, debug=errorMessage)
     return jsonResult
 
 def GetTimestamp(offset=(config.SYSTEM_DEFAULT_TIMEZONE * 3600), floor=False):
@@ -38,32 +38,32 @@ def GetTimestamp(offset=(config.SYSTEM_DEFAULT_TIMEZONE * 3600), floor=False):
     try:
         ts = time.time() + offset
         if not floor:
-            return Utils.GetApiJson(str(ts), True)
+            return Rsp.Dumps(str(ts), True)
         else:
-            res = Utils.RspLoad(Math.Floor(float(ts)))
+            res = Rsp.Loads(JMath.Floor(float(ts)))
             if not res.error:
-                return Utils.GetApiJson(str(res.message), True)
+                return Rsp.Dumps(str(res.message), True)
             else:
-                return Utils.GetApiJson("[GetTimestamp] Failure", False, error=True, debug=res.debug)
+                return Rsp.Dumps("[GetTimestamp] Failure", False, error=True, debug=res.debug)
 
 
     except Exception as ex:
-        return Utils.GetApiJson("[GetTimestamp] Failure", False, error=True, debug=str(ex))
+        return Rsp.Dumps("[GetTimestamp] Failure", False, error=True, debug=str(ex))
      
 def TimestampToDatetime(timestamp):
     """
     將 Unix Timestamp 轉換為 Datetime 形式呈現。
     """
     try:
-        res = Utils.RspLoad(Math.Floor(float(timestamp)))
+        res = Rsp.Loads(JMath.Floor(float(timestamp)))
         if not res.error:
             timestamp = int(res.message)
             dt = datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
 
-            return Utils.GetApiJson(str(dt), True)
+            return Rsp.Dumps(str(dt), True)
         else:
-            return Utils.GetApiJson("[TimestampToDatetime] Failure", False, error=True, debug=res.debug)
+            return Rsp.Dumps("[TimestampToDatetime] Failure", False, error=True, debug=res.debug)
 
     except Exception as ex:
-        return Utils.GetApiJson("[TimestampToDatetime] Failure", False, error=True, debug=str(ex))
+        return Rsp.Dumps("[TimestampToDatetime] Failure", False, error=True, debug=str(ex))
 
