@@ -1,4 +1,7 @@
 # JLib
+*持續補完中，歡迎協助開發。*
+*(Still in development, welcome to send pull request.)*
+
 **自用 Python 函式庫**
 
 此函式庫所有回傳值皆為統一 JSON 格式，非常適合用來作為 API 調用。 
