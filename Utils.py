@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 from JLib import Config as config
 from JLib import Time
-from JLib.Models.RspJson import RspJson
+from JLib.Models import RspJson
     
 
 def GetApiJson(message, result=True, error=False, debug=None):
