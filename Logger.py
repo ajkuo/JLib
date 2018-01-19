@@ -2,6 +2,7 @@
 from JLib import Utils
 from JLib import Config as config
 
+# TODO: 尚未完成
 def Write(source=None, actionType=None, actionContent=None, target=None, noteText=None, noteNum1=None, noteNum2=None, createTime=None):
     """
     傳入指定參數以寫進 Log 文字檔案及資料表(需在config設定, 否則就只會顯示而已)，參數如下：
@@ -29,9 +30,12 @@ def Write(source=None, actionType=None, actionContent=None, target=None, noteTex
 
         # 寫進文件檔
         if config.SYSTEM_LOG_TO_TEXT_FILE:
-            # Path: config.SYSTEM_LOG_TEXT_FILE_PATH
-            # 以日期分檔
             try:
+
+            # Open (path=config.SYSTEM_LOG_TEXT_FILE_PATH, name=以日期區分檔名)     
+            # Write
+            # Close
+
                 message += "[FILE] Success "
                 file_result = True          
             except Exception as ex:
@@ -49,9 +53,10 @@ def Write(source=None, actionType=None, actionContent=None, target=None, noteTex
                 tableName = config.SYSTEM_LOG_TABLE_NAME
                 SQL = "INSERT INTO {0}(Source, ActionType, ActionContent, Target, NoteText, NoteNum1, NoteNum2, CreateTime) VALUES('{1}', '{2}', '{3}', '{4}', '{5}', {6}, {7}, {8});".format(tableName, source, actionType, actionContent, target, noteText, noteNum1, noteNum2, createTime) 
                 # Connect to database.
-                # do something.
-
+                # Run SQL
+                # Disconnect.
                 # Done.
+                
                 message += "[DATABASE] Success "
                 db_result = True
             except Exception as ex:

@@ -3,6 +3,7 @@ import json
 from datetime import datetime
 from JLib import Config as config
 from JLib import Time
+from JLib.Models.RspJson import RspJson
     
 
 def GetApiJson(message, result=True, error=False, debug=None):
@@ -25,10 +26,31 @@ def GetApiJson(message, result=True, error=False, debug=None):
         message = "Convert to JSON failed."
         result = False
         error = True  
-        if econfig.DEBUG_MODE:
+        if config.DEBUG_MODE:
             strJson = json.dumps({"message": message, "result": result, "error": error, "createTime": time, "debug": debug})
         else:
             strJson = json.dumps({"message": message, "result": result, "error": error, "createTime": time})   
         
     return strJson
 
+def RspLoad(message):
+    """
+    將統一 JSON 格式轉為物件回傳，方便調用。
+    回傳物件包含四項屬性：
+    message、result、error 及 debug
+    其中，若 error = False 或 Config 內 DEBUG_MODE = False，
+    則 debug 必為 None
+    """
+    try:
+        res = json.loads(message)
+        message = res["message"]
+        result = res["result"]
+        error = res["error"]
+        createTime = res["createTime"]
+        if "debug" not in res:
+            return RspJson(message, result, error, None, createTime)
+        else:
+            return RspJson(message, result, error, res["debug"], createTime)
+
+    except Exception as ex:
+        return GetApiJson("[RspLoad] Failure", False, error=True, debug=str(ex))
