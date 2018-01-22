@@ -7,7 +7,7 @@
 此函式庫所有回傳值皆為統一 JSON 格式，非常適合用來作為 API 調用。 
 
 ## 自訂函式 (Function)
-此函式庫包含許多自訂函式檔案，其中幾乎必定會用到 **Utils** 及 **Config** 兩個套件。
+此函式庫包含許多自訂函式檔案，其中必定會用到 **JConfig** 套件。
 
 ### 功能性
 為達到模組效用，每個函式撰寫 **只做一件事**，並且盡量在有使用到 **傳入參數**(特別是非文字型態或需要判斷特定文字內容時) 及其他可能出現例外的情況下，包入 try-except 以免發生預期之外的錯誤。
@@ -16,6 +16,8 @@
 盡可能讓每個函式功能清晰易用，並保留傳入內容之彈性。
 此外，必須在函式內撰寫功能說明及用法，撰寫方式如下：
 ```
+from JLib.JConfig import Rsp
+
 def Example(parameter1, parameter2):
     """
     此處撰寫功能說明及用法，力求精簡扼要，但不過度省略。
@@ -23,13 +25,13 @@ def Example(parameter1, parameter2):
     parameter2: 參數 2 說明。
     return: 回傳值一律為 JSON 格式，若有必要請於此處稍作說明。
     """
-    return Utils.GetApiJson(...)
+    return Rsp.Dumps(...)
 ```
 
 
 ### 回傳值
 所有 Function 都使用 JSON 格式作為回傳內容，並應包含 try-except， 
-JSON 格式一律使用 **Utils.GetApiJson()** 統一格式如下說明： 
+JSON 格式一律使用 JConfig 裡面的 Rsp Class 的 **Dumps()** ，以下統一格式如下說明： 
  
 ##### 程式正常執行結果：
 {  
@@ -63,4 +65,4 @@ JSON 格式一律使用 **Utils.GetApiJson()** 統一格式如下說明：
 撰寫前請參考既有程式碼及以上說明，以保持程式彈性和穩定。
 
 ### 讀取回傳值
-除了直接使用 `json.loads()` 讀取回傳值外，也可以使用 `Utils.RspLoad()` 來讀取，此函式將回傳一個 `RspJson` Object，讓您可以直接呼叫各屬性。
+除了直接使用 `json.loads()` 讀取回傳值外，也可以使用 `Rsp.Loads()` 來讀取，此函式將回傳一個 `RspJson` Object，讓您可以直接呼叫各屬性。
