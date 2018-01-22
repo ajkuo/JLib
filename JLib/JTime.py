@@ -52,13 +52,20 @@ def GetTimestamp(offset=(config.SYSTEM_DEFAULT_TIMEZONE * 3600), floor=False):
      
 def TimestampToDatetime(timestamp):
     """
-    將 Unix Timestamp 轉換為 Datetime 形式呈現。
+    將 Unix Timestamp 傳入，並轉換為 Datetime 形式呈現。
     """
     try:
+        ts = float(timestamp)
+        day = ts/3600
+
+        unixDate = datetime.datetime(1970, 1, 1, 0, 0, 0, 0)
+        datetime.strftime(dt, "%Y-%m-%d %H:%M:%S.%f")
+
+
         res = Rsp.Loads(JMath.Floor(float(timestamp)))
         if not res.error:
             timestamp = int(res.message)
-            dt = datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
+            dt = datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S.%f')
 
             return Rsp.Dumps(str(dt), True)
         else:
